@@ -10,6 +10,95 @@ const PORT = 3000;
 
 app.use(express.json());
 
+app.get('/api/characters', async (req, res) => {
+    try {
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        const collection = db.collection('characters');        
+        const characters = await collection.find({}).toArray();
+        res.json(characters);
+        client.close();
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).send("Error fetching characters");
+    }
+});
+
+
+app.get('/api/films', async (req, res) => {
+    try {
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        const collection = db.collection('films');
+        const films = await collection.find({}).toArray();
+        res.json(films);
+        client.close();
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).send("Error fetching films")
+    }
+});
+
+app.get('/api/planets', async (req, res) => {
+    try {
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        const collection = db.collection('planets');
+        const planets = await collection.find({}).toArray();
+        res.json(planets);
+        client.close();
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).send("Error fetching planets")
+    }
+});
+
+app.get('/api/characters/:id', async (req, res) => {
+    try {
+        const characterId = req.params.id;
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        const collection = db.collection('characters');
+        const numericId = parseInt(characterId);
+        const character = await collection.findOne({ id: numericId });
+        
+        if (!character) {
+            return res.status(404).json({
+                error: "Not found",
+                message: `Character with ID ${characterId} not found`
+            });
+        }
+        res.json(character);
+        client.close();
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).send("Error fetching character");
+    } 
+});
+
+app.get('/api/films/:id', async (req, res) => {
+    try {
+        const filmId = req.params.id;
+        const client = await MongoClient.connect(url);
+        const db = client.db(dbName);
+        const collection = db.collection('films');
+        const numericId = parseInt(filmId);
+        const film = await collection.findOne({ id: numericId });
+
+        if (!film) {
+            return res.status(404).json({
+                error: "Not found",
+                message: `Film with ID ${filmId} not found`
+            });
+        }
+        res.json(film);
+        client.close();
+    } catch (err) {
+        console.error("Error:", err);
+        res.status(500).send("Error fetching film");
+    }
+});
+
 // Route: GET http://localhost:3000/api/planets/:id
 app.get('/api/planets/:id', async (req, res) => {
     const id = parseInt(req.params.id);
