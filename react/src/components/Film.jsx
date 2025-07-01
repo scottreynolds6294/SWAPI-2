@@ -11,10 +11,11 @@ function Film() {
   useEffect(() => {
     async function fetchData() {
       try {
+        // Update URLs to include the full base path
         const [filmRes, charRes, planetRes] = await Promise.all([
-          fetch(`/api/films/${id}`),
-          fetch(`/api/films/${id}/characters`),
-          fetch(`/api/films/${id}/planets`)
+          fetch(`http://localhost:3000/api/films/${id}`),
+          fetch(`http://localhost:3000/api/films/${id}/characters`),
+          fetch(`http://localhost:3000/api/films/${id}/planets`)
         ]);
 
         if (!filmRes.ok) throw new Error(`Film not found: ${id}`);
@@ -53,7 +54,7 @@ function Film() {
         <ul>
           {characters.map(char => (
             <li key={char.id}>
-              <Link to={`/character/${char.id}`}>{char.name}</Link>
+              <Link to={`/characters/${char.id}`}>{char.name}</Link>
             </li>
           ))}
         </ul>
@@ -64,7 +65,7 @@ function Film() {
         <ul>
           {planets.map(planet => (
             <li key={planet.id}>
-              <Link to={`/planet/${planet.id}`}>{planet.name}</Link>
+              <Link to={`/planets/${planet.id}`}>{planet.name}</Link>
             </li>
           ))}
         </ul>
