@@ -8,6 +8,7 @@ function Film() {
   const [planets, setPlanets] = useState([]);
   const [error, setError] = useState('');
 
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -37,16 +38,15 @@ function Film() {
   }, [id]);
 
   if (error) return <p>Error: {error}</p>;
-  if (!film) return <p>Loading film...</p>;
 
   return (
     <div>
-      <h1>{film.title}</h1>
+      <h1>{film?.title}</h1>
       <section id="generalInfo">
-        <p><span>Episode:</span> {film.episode_id}</p>
-        <p><span>Director:</span> {film.director}</p>
-        <p><span>Release Date:</span> {film.release_date}</p>
-        <p><span>Opening Crawl:</span> {film.opening_crawl}</p>
+        <p><span>Episode:</span> {film?.episode_id}</p>
+        <p><span>Director:</span> {film?.director}</p>
+        <p><span>Release Date:</span> {film?.release_date}</p>
+        <p><span>Opening Crawl:</span> {film?.opening_crawl}</p>
       </section>
 
       <section id="characters">
