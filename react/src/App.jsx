@@ -26,12 +26,27 @@ function App() {
 );
 
   return (
+
+    <>
+  <div>
+  <h1>Star Wars Universe Lookup</h1>
+  <label htmlFor="searchString">
+    Who you looking for? <span className="small">(Regular expressions are cool here)</span>
+  </label>
+  <input id="searchString" onInput={() => {}} autoComplete="off" />
+  </div>
+
+  <section id="charactersList">
+  </section>
+    </>
+
     <Router>
       <Routes>
         <Route exact path='/' element={<Home data={data} />} />
         <Route path='/character/:id' element={<Character />} />
       </Routes>
     </Router>
+
   )
 }
 
