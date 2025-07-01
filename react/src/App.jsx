@@ -5,12 +5,14 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 function App() {
   return (
     <>
-      <div>
-    <h1>Star Wars Universe Lookup</h1>
-    <label for="searchString">Who you looking for? <span class="small">(Regular expressions are cool
-        here)</span></label>
-    <input id="searchString" oninput="filterCharacters()" autocomplete="off" />
+  <div>
+  <h1>Star Wars Universe Lookup</h1>
+  <label htmlFor="searchString">
+    Who you looking for? <span className="small">(Regular expressions are cool here)</span>
+  </label>
+  <input id="searchString" onInput={() => {}} autoComplete="off" />
   </div>
+
   <section id="charactersList">
   </section>
     </>
