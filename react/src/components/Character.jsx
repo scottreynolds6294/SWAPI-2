@@ -66,6 +66,7 @@ const Character = () => {
                 <p>Mass: <span id="mass"></span>{character?.mass} kg</p>
                 <p>Born: <span id="birth_year">{character?.birth_year}</span></p>
             </section>
+            <div id='links'>
             <section id="planets">
                 <h2>Homeworld</h2>
                 <p onClick={handleClickHomeworld} style={{cursor: 'pointer'}}>
@@ -89,7 +90,7 @@ const Character = () => {
                 ) : (
                     <p>No films found</p>
                 )}
-            </section>
+            </section></div>
         </div>
     );
 };

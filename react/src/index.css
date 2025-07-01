@@ -20,6 +20,10 @@ p {
   color: var(--dark1);
 }
 
+#links {
+  display: flex;
+}
+
 button {
   background-color: var(--light2);
   color: var(--dark2);
@@ -74,14 +78,14 @@ h1#name {
   margin: 50px;
 }
 
-#generalInfo {
+#generalInfo, #planets, #films {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   border: 20px;
 }
 
-#generalInfo p {
+#generalInfo p, #planets p, #films li, #characters li {
   padding: 20px;
   margin: 10px;
   color: var(--dark2);
@@ -108,7 +112,8 @@ section#films ul {
 
 section#planets a,
 section#characters a,
-section#films a {
+section#films a,
+#films li, #characters li, #planet p {
   display: inline-block;
   text-decoration: none;
   font-size: 1.1em;
