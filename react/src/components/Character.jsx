@@ -24,8 +24,7 @@ const Character = () => {
                 const response = await fetch(`http://localhost:3000/api/characters/${id}`);
                 const data = await response.json();
                 setCharacter(data);
-                
-                // If character has a homeworld ID, fetch the planet details
+            
                 if (data && data.homeworld) {
                     fetchPlanet(data.homeworld);
                 }
@@ -36,10 +35,8 @@ const Character = () => {
         fetchCharacter();
     }, [id]);
 
-    // Modified to accept planetId parameter
     const fetchPlanet = async (planetId) => {
         try {
-            // Use the correct endpoint for planets
             const response = await fetch(`http://localhost:3000/api/planets/${planetId}`);
             const data = await response.json();
             setPlanet(data);
